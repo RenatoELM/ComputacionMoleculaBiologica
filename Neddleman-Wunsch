@@ -1,0 +1,154 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <time.h>
+#include <iostream>
+#include <vector>
+#include <list>
+#include <string>
+#include <algorithm>
+#include <queue>
+#include <stack>
+#include <set>
+#include <map>
+#include <complex>
+#include <stdlib.h>
+#include <fstream>
+
+#define MAX_N 1001
+
+#define DPRINTC(C) printf(#C " = %c\n", (C))
+#define DPRINTS(S) printf(#S " = %s\n", (S))
+#define DPRINTD(D) printf(#D " = %d\n", (D))
+#define DPRINTLLD(LLD) printf(#LLD " = %lld\n", (LLD))
+#define DPRINTLF(LF) printf(#LF " = %.5lf\n", (LF))
+
+using namespace std;
+typedef long long lld;
+typedef unsigned long long llu;
+
+int n, m;
+int match_score, mismatch_score, gap_score;
+string s, t;
+int dp[MAX_N][MAX_N];
+
+void lec_txt() {
+    std::ifstream archivoEntrada("D:\\UCSP\\2023-02\\Computación Molecular Biológica\\Tarea 1\\Sars-Cov(1080).txt");
+    std::ofstream archivoSalida("D:\\UCSP\\2023-02\\Computación Molecular Biológica\\Tarea 1\\Sars-CovFin(1080).txt");
+    if (archivoEntrada.is_open() && archivoSalida.is_open()) {
+        std::string linea;
+        while (std::getline(archivoEntrada, linea)) {
+            // Elimina los espacios en blanco de la línea
+            linea.erase(std::remove_if(linea.begin(), linea.end(), ::isspace), linea.end());
+
+            // Escribe la línea procesada en el archivo de salida
+            archivoSalida << linea << std::endl;
+        }
+
+        // Cierra los archivos
+        archivoEntrada.close();
+        archivoSalida.close();
+    }
+    else {
+        std::cerr << "No se pudo abrir uno o ambos archivos." << std::endl;
+    }
+}
+
+inline int needleman_wunsch()
+{
+    for (int i = 0; i <= n; i++) dp[i][0] = dp[0][i] = -i * gap_score;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= m; j++)
+        {
+            int S = (s[i - 1] == t[j - 1]) ? match_score : -mismatch_score;
+            dp[i][j] = max(dp[i - 1][j - 1] + S, max(dp[i - 1][j] - gap_score, dp[i][j - 1] - gap_score));
+        }
+    }
+    return dp[n][m];
+}
+
+inline pair<string, string> get_optimal_alignment()
+{
+    string retA, retB;
+    stack<char> SA, SB;
+    int ii = n, jj = m;
+    while (ii != 0 || jj != 0)
+    {
+        if (ii == 0)
+        {
+            SA.push('-');
+            SB.push(t[jj - 1]);
+            jj--;
+        }
+        else if (jj == 0)
+        {
+            SA.push(s[ii - 1]);
+            SB.push('-');
+            ii--;
+        }
+        else
+        {
+            int S = (s[ii - 1] == t[jj - 1]) ? match_score : -mismatch_score;
+            if (dp[ii][jj] == dp[ii - 1][jj - 1] + S)
+            {
+                SA.push(s[ii - 1]);
+                SB.push(t[jj - 1]);
+                ii--; jj--;
+            }
+            else if (dp[ii - 1][jj] > dp[ii][jj - 1])
+            {
+                SA.push(s[ii - 1]);
+                SB.push('-');
+                ii--;
+            }
+            else
+            {
+                SA.push('-');
+                SB.push(t[jj - 1]);
+                jj--;
+            }
+        }
+    }
+    while (!SA.empty())
+    {
+        retA += SA.top();
+        retB += SB.top();
+        SA.pop();
+        SB.pop();
+    }
+    return make_pair(retA, retB);
+}
+
+int main()
+{
+    //lec_txt();
+    //n = 5, m = 6;
+    n = 4, m = 3;
+    match_score = 2, mismatch_score = 1, gap_score = 1;
+    //s = "CATGT";
+    //t = "ACGCTG";
+    s = "AAAC";
+    t = "AGC";
+
+    /*ifstream archivo1("D:\\UCSP\\2023 - 02\\Computación Molecular Biológica\\Tarea 1\\BacteriaFin(1060).txt");
+    ifstream archivo2("D:\\UCSP\\2023 - 02\\Computación Molecular Biológica\\Tarea 1\\InfluenzaFin(1080).txt");
+    ifstream archivo3("D:\\UCSP\\2023 - 02\\Computación Molecular Biológica\\Tarea 1\\Sars-CovFin(1080).txt");
+
+    while (!archivo1.eof()) {
+        getline(archivo1,s);
+    }
+
+    while (!archivo2.eof()) {
+        getline(archivo1, t);
+    }
+
+    archivo1.close();
+    archivo2.close();
+    archivo3.close();*/
+
+    printf("%d\n", needleman_wunsch());
+    pair<string, string> alignment = get_optimal_alignment();
+    printf("%s\n%s\n", alignment.first.c_str(), alignment.second.c_str());
+    return 0;
+}
