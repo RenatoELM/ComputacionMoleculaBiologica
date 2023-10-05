@@ -34,15 +34,15 @@ string sr, tr, ur, vr, wr, xr;
 int dp[MAX_N][MAX_N];
 
 void lec_txt() {
-    std::ifstream archivoEntrada("D:\\UCSP\\2023-02\\Computaci髇 Molecular Biol骻ica\\Tarea 1\\Sars-Cov(1080).txt");
-    std::ofstream archivoSalida("D:\\UCSP\\2023-02\\Computaci髇 Molecular Biol骻ica\\Tarea 1\\Sars-CovFin(1080).txt");
+    std::ifstream archivoEntrada("D:\\UCSP\\2023-02\\Computaci贸n Molecular Biol贸gica\\Tarea 1\\Sars-Cov(1080).txt");
+    std::ofstream archivoSalida("D:\\UCSP\\2023-02\\Computaci贸n Molecular Biol贸gica\\Tarea 1\\Sars-CovFin(1080).txt");
     if (archivoEntrada.is_open() && archivoSalida.is_open()) {
         std::string linea;
         while (std::getline(archivoEntrada, linea)) {
-            // Elimina los espacios en blanco de la l韓ea
+            // Elimina los espacios en blanco de la l铆nea
             linea.erase(std::remove_if(linea.begin(), linea.end(), ::isspace), linea.end());
 
-            // Escribe la l韓ea procesada en el archivo de salida
+            // Escribe la l铆nea procesada en el archivo de salida
             archivoSalida << linea << std::endl;
         }
 
@@ -132,22 +132,22 @@ int main()
     //s = "ATCTTCTT";
     //t = "ACTGACC";
 
-    //ifstream archivo1("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 1/Pruebas/SecuenciaA.txt");
-    //ifstream archivo2("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 1/Pruebas/SecuenciaB.txt");
+    //ifstream archivo1("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 1/Pruebas/SecuenciaA.txt");
+    //ifstream archivo2("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 1/Pruebas/SecuenciaB.txt");
 
-    ifstream archivo1("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/A BRAC1 F.txt");
-    ifstream archivo2("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/B BRAC1 F.txt");
-    ifstream archivo3("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/C BRAC1 F.txt");
-    ifstream archivo4("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/D BRAC1 F.txt");
-    ifstream archivo5("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/E BRAC1 F.txt");
-    ifstream archivo6("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/F BRAC1 F.txt");
+    ifstream archivo1("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/A BRAC1 F.txt");
+    ifstream archivo2("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/B BRAC1 F.txt");
+    ifstream archivo3("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/C BRAC1 F.txt");
+    ifstream archivo4("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/D BRAC1 F.txt");
+    ifstream archivo5("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/E BRAC1 F.txt");
+    ifstream archivo6("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/F BRAC1 F.txt");
 
-    ifstream archivo7("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/A BRAC1 R.txt");
-    ifstream archivo8("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/B BRAC1 R.txt");
-    ifstream archivo9("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/C BRAC1 R.txt");
-    ifstream archivo10("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/D BRAC1 R.txt");
-    ifstream archivo11("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/E BRAC1 R.txt");
-    ifstream archivo12("D:/UCSP/2023-02/Computaci髇 Molecular Biol骻ica/Tarea 3/Cadenas/F BRAC1 R.txt");
+    ifstream archivo7("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/A BRAC1 R.txt");
+    ifstream archivo8("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/B BRAC1 R.txt");
+    ifstream archivo9("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/C BRAC1 R.txt");
+    ifstream archivo10("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/D BRAC1 R.txt");
+    ifstream archivo11("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/E BRAC1 R.txt");
+    ifstream archivo12("D:/UCSP/2023-02/Computaci贸n Molecular Biol贸gica/Tarea 3/Cadenas/F BRAC1 R.txt");
 
     while (!archivo1.eof()) {
         getline(archivo1, s);
